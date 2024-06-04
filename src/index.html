@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="App"></div>
+		<script src="parser.js"></script>
+		<script>
+			const state = [
+				{ course: 'HTML', isFinish: false },
+				{ course: 'CSS', isFinish: true },
+				{ course: 'JavaScript', isFinish: false },
+			];
+
+			const jsx = `
+				<div>
+					<h1>Todo List</h1>
+					<ul>
+						${state.map(
+							item => `
+							<li>
+								<input type="checkbox" ${item.isFinish ? 'checked' : ''} />
+								<span>${item.course}</span>
+							</li>
+						`
+						)}
+					</ul>
+				</div>
+			
+			`;
+			const tokens = tokenize(jsx);
+			const virtualDOM = parse(tokens);
+			const realDOM = createElementFromVirtual(virtualDOM);
+
+			document.getElementById('App').appendChild(realDOM);
+		</script>
+	</body>
+</html>
