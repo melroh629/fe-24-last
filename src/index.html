@@ -9,33 +9,15 @@
 		<div id="App"></div>
 		<script src="parser.js"></script>
 		<script>
-			const state = [
-				{ course: 'HTML', isFinish: false },
-				{ course: 'CSS', isFinish: true },
-				{ course: 'JavaScript', isFinish: false },
-			];
-
 			const jsx = `
-				<div>
-					<h1>Todo List</h1>
-					<ul>
-						${state.map(
-							item => `
-							<li>
-								<input type="checkbox" ${item.isFinish ? 'checked' : ''} />
-								<span>${item.course}</span>
-							</li>
-						`
-						)}
-					</ul>
-				</div>
-			
+				<h1>heading 1</h1>
 			`;
 			const tokens = tokenize(jsx);
 			const virtualDOM = parse(tokens);
+			console.log(virtualDOM);
 			const realDOM = createElementFromVirtual(virtualDOM);
 
-			document.getElementById('App').appendChild(realDOM);
+			// document.getElementById('App').appendChild(realDOM);
 		</script>
 	</body>
 </html>
